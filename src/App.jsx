@@ -13,6 +13,8 @@ function App() {
             <th>Price</th>
             <th>Weight</th>
             <th>Protein/100g</th>
+            <th>Total Protein</th>
+            <th>Protein per krona</th>
           </tr>
         </thead>
         <tbody>
@@ -20,9 +22,11 @@ function App() {
             <tr key={product.id}>
               <td>{product.name}</td>
               <td>{product.store}</td>
-              <td>{product.price} kr</td>
-              <td>{product.weightGrams} g</td>
-              <td>{product.proteinPer100g} g</td>
+              <td>{product.price}kr</td>
+              <td>{product.weightGrams}g</td>
+              <td>{product.proteinPer100g}g</td>
+              <td>{product.weightGrams * (product.proteinPer100g)/100}g</td>
+              <td>{(product.weightGrams * (product.proteinPer100g)/100) / product.price}</td>
             </tr>
           ))}
         </tbody>
