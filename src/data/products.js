@@ -1,0 +1,42 @@
+export const products = [
+  {
+    id: 1,
+    name: "Whey-80 Vassleprotein",
+    store: "Gymgrossisten",
+    price: 315,
+    weightGrams: 1000,
+    proteinPer100g: 75
+  },
+  {
+    id: 2,
+    name: "Whey 100%",
+    store: "MMSports",
+    price: 349,
+    weightGrams: 1000,
+    proteinPer100g: 70
+  },
+  {
+    id: 3,
+    name: "Whey-100 Vassleprotein",
+    store: "Gymgrossisten",
+    price: 419,
+    weightGrams: 1000,
+    proteinPer100g: 84
+  },
+  {
+    id: 4,
+    name: "Mix&Match: 4 x Whey-80 Vassleprotein",
+    store: "Gymgrossisten",
+    price: 1099,
+    weightGrams: 4000,
+    proteinPer100g: 75
+  },
+  {
+    id: 5,
+    name: "4 st Whey 100%",
+    store: "MMSports",
+    price: 1149,
+    weightGrams: 4000,
+    proteinPer100g: 70
+  }
+]
