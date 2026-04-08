@@ -1,4 +1,5 @@
 import "./App.css";
+import SortControls from './components/SortControls';
 import { products } from "./data/products";
 import { getTotalProtein, getProteinPerKrona } from "./utils/calculations";
 import { useState } from "react";
@@ -20,21 +21,18 @@ function App() {
   return (
     <div className="app">
       <div className="container">
-        <select value={sortBy} onChange={(e) => setSortBy(e.target.value)}>
-          <option value="proteinPerKrona">Protein / kr (högt till lågt)</option>
-          <option value="price">Pris (lågt til högt)</option>
-        </select>
+        <SortControls sortBy={sortBy} setSortBy={setSortBy} />
         <h1>Protein per krona</h1>
         <table>
           <thead>
             <tr>
-              <th>Product</th>
-              <th>Store</th>
-              <th>Price</th>
-              <th>Weight</th>
+              <th>Produkt</th>
+              <th>Säljare</th>
+              <th>Pris</th>
+              <th>Vikt</th>
               <th>Protein/100g</th>
               <th>Total Protein</th>
-              <th>Protein per krona</th>
+              <th>PPK</th>
             </tr>
           </thead>
           <tbody>
