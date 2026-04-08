@@ -1,5 +1,6 @@
 import "./App.css";
 import { products } from "./data/products";
+import { getTotalProtein, getProteinPerKrona } from './utils/calculations';
 import { useState } from "react";
 
 function App() {
@@ -7,9 +8,7 @@ function App() {
 
   const sortedProducts = [...products].sort((a, b) => {
     if (sortBy === "proteinPerKrona") {
-      const aValue = (a.weightGrams * (a.proteinPer100g / 100)) / a.price;
-      const bValue = (b.weightGrams * (b.proteinPer100g / 100)) / b.price;
-      return bValue - aValue;
+      return  getProteinPerKrona(b) - getProteinPerKrona(a)
     }
     if (sortBy === "price") {
       return a.price - b.price;
@@ -39,23 +38,18 @@ function App() {
             </tr>
           </thead>
           <tbody>
-            {sortedProducts.map((product) => {
-              const totalProtein =
-                (product.weightGrams * product.proteinPer100g) / 100;
-              const ProteinPerKrona = totalProtein / product.price;
-
-              return (
+            {sortedProducts.map((product) => (
                 <tr key={product.id}>
                   <td>{product.name}</td>
                   <td>{product.store}</td>
                   <td>{product.price}kr</td>
                   <td>{product.weightGrams}g</td>
                   <td>{product.proteinPer100g}g</td>
-                  <td>{totalProtein}g</td>
-                  <td>{ProteinPerKrona.toFixed(2)}</td>
+                  <td>{getTotalProtein(product)}g</td>
+                  <td>{getProteinPerKrona(product).toFixed(2)}</td>
                 </tr>
-              );
-            })}
+            )
+            )}
           </tbody>
         </table>
       </div>
