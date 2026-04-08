@@ -16,16 +16,18 @@ function ProductTable({ products }) {
       </thead>
       <tbody>
         {products.map((product) => {
+          const { id, name, store, price, weightGrams, proteinPer100g } =
+            product;
           const totalProtein = getTotalProtein(product);
           const proteinPerKrona = getProteinPerKrona(product);
 
           return (
-            <tr key={product.id}>
-              <td>{product.name}</td>
-              <td>{product.store}</td>
-              <td>{product.price} kr</td>
-              <td>{product.weightGrams} g</td>
-              <td>{product.proteinPer100g} g</td>
+            <tr key={id}>
+              <td>{name}</td>
+              <td>{store}</td>
+              <td>{price} kr</td>
+              <td>{weightGrams} g</td>
+              <td>{proteinPer100g} g</td>
               <td>{totalProtein} g</td>
               <td>{proteinPerKrona.toFixed(2)}</td>
             </tr>

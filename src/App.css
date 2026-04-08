@@ -26,6 +26,7 @@ h1 {
   color: #ffffff;
 }
 
+/* SortControls */
 select {
   padding: 8px 12px;
   margin-bottom: 16px;
@@ -36,6 +37,7 @@ select {
   border-radius: 6px;
 }
 
+/* ProductTable */
 table {
   width: 100%;
   border-collapse: collapse;
@@ -54,4 +56,48 @@ td {
 
 tr:hover {
   background-color: #32343a;
+}
+
+/* Filters */
+.filter-controls {
+  margin-bottom: 16px;
+}
+
+.filter-button {
+  background-color: #3a3b42;
+  color: #e4e6eb;
+  border: 1px solid #4a4c55;
+  border-radius: 8px;
+  padding: 8px 14px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.filter-button:hover {
+  background-color: #444650;
+}
+
+.filter-panel {
+  margin-top: 10px;
+  padding: 12px;
+  background: #2a2b31;
+  border: 1px solid #3a3b42;
+  border-radius: 8px;
+  width: 280px;
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.filter-group:last-child {
+  margin-bottom: 0;
+}
+
+.filter-group label {
+  font-size: 13px;
+  color: #cfd3da;
 }
