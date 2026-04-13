@@ -1,10 +1,10 @@
-import "./App.css";
-import SortControls from "./components/SortControls";
-import FilterControls from "./components/FilterControls";
-import ProductTable from "./components/ProductTable";
-import { products } from "./data/products";
-import { getProteinPerKrona } from "./utils/calculations";
-import { useState } from "react";
+import './App.css';
+import SortControls from './components/SortControls';
+import FilterControls from './components/FilterControls';
+import ProductTable from './components/ProductTable';
+import { products } from './data/products';
+import { getProteinPerKrona } from './utils/calculations';
+import { useState } from 'react';
 
 function App() {
   //Starting values for price filter sliders
@@ -13,7 +13,7 @@ function App() {
   const highestPrice = Math.max(...prices);
 
   //State variables
-  const [sortBy, setSortBy] = useState("proteinPerKrona");
+  const [sortBy, setSortBy] = useState('proteinPerKrona');
   const [minPrice, setMinPrice] = useState(lowestPrice);
   const [maxPrice, setMaxPrice] = useState(highestPrice);
   const [showFilters, setShowFilters] = useState(false);
@@ -23,10 +23,10 @@ function App() {
   });
 
   const sortedProducts = [...filteredProducts].sort((a, b) => {
-    if (sortBy === "proteinPerKrona") {
+    if (sortBy === 'proteinPerKrona') {
       return getProteinPerKrona(b) - getProteinPerKrona(a);
     }
-    if (sortBy === "price") {
+    if (sortBy === 'price') {
       return a.price - b.price;
     }
 
