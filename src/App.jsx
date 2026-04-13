@@ -16,6 +16,10 @@ function App() {
   const weights = products.map((product) => product.weightGrams);
   const lowestWeight = Math.min(...weights);
   const highestWeight = Math.max(...weights);
+  //PPKs
+  const ppks = products.map((product) => getProteinPerKrona(product));
+  const lowestPpk = Math.min(...ppks);
+  const highestPpk = Math.max(...ppks);
 
   //State variables
   const [sortBy, setSortBy] = useState('proteinPerKrona');
@@ -24,16 +28,23 @@ function App() {
   const [maxPrice, setMaxPrice] = useState(highestPrice);
   const [minWeight, setMinWeight] = useState(lowestWeight);
   const [maxWeight, setMaxWeight] = useState(highestWeight);
+  const [minPpk, setMinPpk] = useState(lowestPpk);
+  const [maxPpk, setMaxPpk] = useState(highestPpk);
 
+  //Filter logic
   const filteredProducts = products.filter((product) => {
+    const proteinPerKrona = getProteinPerKrona(product);
     return (
       product.price >= minPrice &&
       product.price <= maxPrice &&
       product.weightGrams >= minWeight &&
-      product.weightGrams <= maxWeight
+      product.weightGrams <= maxWeight &&
+      proteinPerKrona >= minPpk &&
+      proteinPerKrona <= maxPpk
     );
   });
 
+  //Product sorting
   const sortedProducts = [...filteredProducts].sort((a, b) => {
     if (sortBy === 'proteinPerKrona') {
       return getProteinPerKrona(b) - getProteinPerKrona(a);
@@ -66,6 +77,12 @@ function App() {
             setMaxWeight={setMaxWeight}
             highestWeight={highestWeight}
             lowestWeight={lowestWeight}
+            minPpk={minPpk}
+            setMinPpk={setMinPpk}
+            maxPpk={maxPpk}
+            setMaxPpk={setMaxPpk}
+            highestPpk={highestPpk}
+            lowestPpk={lowestPpk}
           />
         </div>
         <ProductTable products={sortedProducts} />
