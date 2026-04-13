@@ -21,26 +21,50 @@ function App() {
   const lowestPpk = Math.min(...ppks);
   const highestPpk = Math.max(...ppks);
 
+  const ranges = {
+    price: {
+      min: lowestPrice,
+      max: highestPrice,
+    },
+    weight: {
+      min: lowestWeight,
+      max: highestWeight,
+    },
+    ppk: {
+      min: lowestPpk,
+      max: highestPpk,
+    },
+  };
+
   //State variables
   const [sortBy, setSortBy] = useState('proteinPerKrona');
   const [showFilters, setShowFilters] = useState(false);
-  const [minPrice, setMinPrice] = useState(lowestPrice);
-  const [maxPrice, setMaxPrice] = useState(highestPrice);
-  const [minWeight, setMinWeight] = useState(lowestWeight);
-  const [maxWeight, setMaxWeight] = useState(highestWeight);
-  const [minPpk, setMinPpk] = useState(lowestPpk);
-  const [maxPpk, setMaxPpk] = useState(highestPpk);
+  const [filters, setFilters] = useState({
+    price: {
+      min: lowestPrice,
+      max: highestPrice,
+    },
+    weight: {
+      min: lowestWeight,
+      max: highestWeight,
+    },
+    ppk: {
+      min: lowestPpk,
+      max: highestPpk,
+    },
+  });
 
   //Filter logic
   const filteredProducts = products.filter((product) => {
     const proteinPerKrona = getProteinPerKrona(product);
+
     return (
-      product.price >= minPrice &&
-      product.price <= maxPrice &&
-      product.weightGrams >= minWeight &&
-      product.weightGrams <= maxWeight &&
-      proteinPerKrona >= minPpk &&
-      proteinPerKrona <= maxPpk
+      product.price >= filters.price.min &&
+      product.price <= filters.price.max &&
+      product.weightGrams >= filters.weight.min &&
+      product.weightGrams <= filters.weight.max &&
+      proteinPerKrona >= filters.ppk.min &&
+      proteinPerKrona <= filters.ppk.max
     );
   });
 
@@ -65,24 +89,9 @@ function App() {
           <FilterControls
             showFilters={showFilters}
             setShowFilters={setShowFilters}
-            minPrice={minPrice}
-            setMinPrice={setMinPrice}
-            maxPrice={maxPrice}
-            setMaxPrice={setMaxPrice}
-            lowestPrice={lowestPrice}
-            highestPrice={highestPrice}
-            minWeight={minWeight}
-            setMinWeight={setMinWeight}
-            maxWeight={maxWeight}
-            setMaxWeight={setMaxWeight}
-            highestWeight={highestWeight}
-            lowestWeight={lowestWeight}
-            minPpk={minPpk}
-            setMinPpk={setMinPpk}
-            maxPpk={maxPpk}
-            setMaxPpk={setMaxPpk}
-            highestPpk={highestPpk}
-            lowestPpk={lowestPpk}
+            filters={filters}
+            setFilters={setFilters}
+            ranges={ranges}
           />
         </div>
         <ProductTable products={sortedProducts} />
