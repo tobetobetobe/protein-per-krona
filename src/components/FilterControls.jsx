@@ -1,3 +1,6 @@
+import Slider from '@rc-component/slider';
+import '@rc-component/slider/assets/index.css';
+
 function FilterControls({
   showFilters,
   setShowFilters,
@@ -17,24 +20,18 @@ function FilterControls({
       {showFilters && (
         <div className="filter-panel">
           <div className="filter-group">
-            <label>Min pris: {minPrice} kr</label>
-            <input
-              type="range"
+            <label>
+              Pris: {minPrice} - {maxPrice} kr
+            </label>
+            <Slider
+              range
               min={lowestPrice}
               max={highestPrice}
-              value={minPrice}
-              onChange={(e) => setMinPrice(Number(e.target.value))}
-            />
-          </div>
-
-          <div className="filter-group">
-            <label>Max pris: {maxPrice} kr</label>
-            <input
-              type="range"
-              min={lowestPrice}
-              max={highestPrice}
-              value={maxPrice}
-              onChange={(e) => setMaxPrice(Number(e.target.value))}
+              value={[minPrice, maxPrice]}
+              onChange={(value) => {
+                setMinPrice(value[0]);
+                setMaxPrice(value[1]);
+              }}
             />
           </div>
         </div>
