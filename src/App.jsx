@@ -37,17 +37,19 @@ function App() {
     <div className="app">
       <div className="container">
         <h1>Protein per krona</h1>
-        <SortControls sortBy={sortBy} setSortBy={setSortBy} />
-        <FilterControls
-          showFilters={showFilters}
-          setShowFilters={setShowFilters}
-          minPrice={minPrice}
-          setMinPrice={setMinPrice}
-          maxPrice={maxPrice}
-          setMaxPrice={setMaxPrice}
-          lowestPrice={lowestPrice}
-          highestPrice={highestPrice}
-        />
+        <div className="controls-bar">
+          <SortControls sortBy={sortBy} setSortBy={setSortBy} />
+          <FilterControls
+            showFilters={showFilters}
+            setShowFilters={setShowFilters}
+            minPrice={minPrice}
+            setMinPrice={setMinPrice}
+            maxPrice={maxPrice}
+            setMaxPrice={setMaxPrice}
+            lowestPrice={lowestPrice}
+            highestPrice={highestPrice}
+          />
+        </div>
         <ProductTable products={sortedProducts} />
       </div>
     </div>

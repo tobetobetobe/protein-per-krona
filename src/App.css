@@ -29,7 +29,6 @@ h1 {
 /* SortControls */
 select {
   padding: 8px 12px;
-  margin-bottom: 16px;
   font-size: 14px;
   background-color: #2a2b31;
   color: #e4e6eb;
@@ -60,7 +59,7 @@ tr:hover {
 
 /* Filters */
 .filter-controls {
-  margin-bottom: 16px;
+  position: relative;
 }
 
 .filter-button {
@@ -78,12 +77,16 @@ tr:hover {
 }
 
 .filter-panel {
-  margin-top: 10px;
+  position: absolute;
+  top: 40px;
+  left: 0;
   padding: 12px;
+  width: 280px;
   background: #2a2b31;
   border: 1px solid #3a3b42;
   border-radius: 8px;
-  width: 280px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+  z-index: 10;
 }
 
 .filter-group {
@@ -100,4 +103,13 @@ tr:hover {
 .filter-group label {
   font-size: 13px;
   color: #cfd3da;
+}
+
+/* Controls bar */
+.controls-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
 }

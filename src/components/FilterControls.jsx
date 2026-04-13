@@ -10,11 +10,8 @@ function FilterControls({
 }) {
   return (
     <div className="filter-controls">
-      <button
-        className="filter-button"
-        onClick={() => setShowFilters(!showFilters)}
-      >
-        Filter
+      <button type="button" className="filter-button" onClick={() => setShowFilters(!showFilters)}>
+        {showFilters ? 'Dölj filter' : 'Filter'}
       </button>
 
       {showFilters && (

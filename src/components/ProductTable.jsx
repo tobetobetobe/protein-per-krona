@@ -1,4 +1,4 @@
-import { getTotalProtein, getProteinPerKrona } from "../utils/calculations";
+import { getTotalProtein, getProteinPerKrona } from '../utils/calculations';
 
 function ProductTable({ products }) {
   return (
@@ -16,8 +16,7 @@ function ProductTable({ products }) {
       </thead>
       <tbody>
         {products.map((product) => {
-          const { id, name, store, price, weightGrams, proteinPer100g } =
-            product;
+          const { id, name, store, price, weightGrams, proteinPer100g } = product;
           const totalProtein = getTotalProtein(product);
           const proteinPerKrona = getProteinPerKrona(product);
 
