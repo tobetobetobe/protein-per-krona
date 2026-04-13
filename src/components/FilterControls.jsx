@@ -10,6 +10,12 @@ function FilterControls({
   setMaxPrice,
   lowestPrice,
   highestPrice,
+  minWeight,
+  setMinWeight,
+  maxWeight,
+  setMaxWeight,
+  highestWeight,
+  lowestWeight,
 }) {
   return (
     <div className="filter-controls">
@@ -31,6 +37,21 @@ function FilterControls({
               onChange={(value) => {
                 setMinPrice(value[0]);
                 setMaxPrice(value[1]);
+              }}
+            />
+          </div>
+          <div className="filter-group">
+            <label>
+              Vikt: {minWeight} - {maxWeight} g
+            </label>
+            <Slider
+              range
+              min={lowestWeight}
+              max={highestWeight}
+              value={[minWeight, maxWeight]}
+              onChange={(value) => {
+                setMinWeight(value[0]);
+                setMaxWeight(value[1]);
               }}
             />
           </div>
