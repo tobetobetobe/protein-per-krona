@@ -1,3 +1,4 @@
+import fs from 'fs';
 import * as cheerio from 'cheerio';
 
 export async function scrapeProductPage(url) {
@@ -68,4 +69,5 @@ const testUrl =
   'https://www.mmsports.se/kosttillskott/protein/vassleproteinwhey/body-science-whey-100-403-g.html';
 
 const products = await scrapeProductPage(testUrl);
-console.log(products);
+fs.writeFileSync('data/mmsports-products.json', JSON.stringify(products, null, 2));
+console.log('Saved products to data/mmsports-products.json');
