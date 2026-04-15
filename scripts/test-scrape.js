@@ -21,45 +21,45 @@ async function scrape() {
     // Extract base price (default single-unit price)
     const price = productJSON.c_options.price;
 
-    // Get first variant (we only handle one variant for now)
+    // Get IDs for all variants on product page
     const variantIds = Object.keys(productJSON.variants);
-    const firstVariantId = variantIds[0];
-    const firstVariant = productJSON.variants[firstVariantId][0];
 
-    // Extract HTML description for the variant
-    const variantHtml = firstVariant[16];
-    const $variant = cheerio.load(variantHtml);
+    const products = [];
 
-    // Extract product name from <h2>
-    const name = $variant('h2').text();
+    for (const variantId of variantIds) {
+      const variant = productJSON.variants[variantId][0];
 
-    // Extract weight (e.g. "Nettovikt: 403 g") using regex
-    const variantText = $variant.text();
-    const weightMatch = variantText.match(/Nettovikt:\s*(\d+)\s*g/i);
-    const weightGrams = weightMatch ? Number(weightMatch[1]) : null;
+      // Extract HTML description for the variant
+      const variantHtml = variant[16];
+      const $variant = cheerio.load(variantHtml);
 
-    // Extract protein per 100g from nutrition table
-    const proteinRow = $variant('td:contains("Protein")').parent();
-    const proteinText = proteinRow.find('td').eq(1).text();
-    const proteinPer100g = Number(proteinText.replace(/\D/g, ''));
+      // Extract product name from <h2>
+      const name = $variant('h2').text();
 
-    // Log extracted values (debugging)
-    console.log('NAME:', name);
-    console.log('PRICE:', price);
-    console.log('WEIGHT:', weightGrams);
-    console.log('PROTEIN PER 100G:', proteinPer100g);
+      // Extract weight (e.g. "Nettovikt: 403 g") using regex
+      const variantText = $variant.text();
+      const weightMatch = variantText.match(/Nettovikt:\s*(\d+)\s*g/i);
+      const weightGrams = weightMatch ? Number(weightMatch[1]) : null;
 
-    // Build normalized product object for our app
-    const product = {
-      id: `mmsports-${firstVariantId}`,
-      name,
-      store: 'MMSports',
-      price,
-      weightGrams,
-      proteinPer100g,
-    };
+      // Extract protein per 100g from nutrition table
+      const proteinRow = $variant('td:contains("Protein")').parent();
+      const proteinText = proteinRow.find('td').eq(1).text();
+      const proteinPer100g = Number(proteinText.replace(/\D/g, ''));
 
-    console.log('PRODUCT:', product);
+      // Build normalized product object for our app
+      const product = {
+        id: `mmsports-${variantId}`,
+        name,
+        store: 'MMSports',
+        price,
+        weightGrams,
+        proteinPer100g,
+      };
+
+      products.push(product);
+    }
+
+    console.log('PRODUCTS:', products);
   } catch (error) {
     console.error('Scrape failed:', error.message);
   }
