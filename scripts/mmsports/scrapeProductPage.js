@@ -1,9 +1,6 @@
 import * as cheerio from 'cheerio';
 
-const url =
-  'https://www.mmsports.se/kosttillskott/protein/vassleproteinwhey/body-science-whey-100-403-g.html';
-
-async function scrape() {
+export async function scrapeProductPage(url) {
   try {
     // Fetch product page HTML
     const res = await fetch(url);
@@ -59,10 +56,16 @@ async function scrape() {
       products.push(product);
     }
 
-    console.log('PRODUCTS:', products);
+    return products;
   } catch (error) {
     console.error('Scrape failed:', error.message);
+    return [];
   }
 }
 
-scrape();
+// Temporary test run while developing this file
+const testUrl =
+  'https://www.mmsports.se/kosttillskott/protein/vassleproteinwhey/body-science-whey-100-403-g.html';
+
+const products = await scrapeProductPage(testUrl);
+console.log(products);
