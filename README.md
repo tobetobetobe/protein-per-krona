@@ -46,36 +46,33 @@ node scripts/mmsports/scrapeStore.js
 
 ## Project structure
 
-PPK
-├─ .prettierignore
-├─ .prettierrc
-├─ data
-│ ├─ mmsports-products.json
-│ └─ mock-products.json
-├─ eslint.config.js
-├─ index.html
-├─ package-lock.json
-├─ package.json
-├─ public
-├─ README.md
-├─ scripts
-│ └─ mmsports
-│ ├─ scrapeCategoryPage.js
-│ ├─ scrapeProductPage.js
-│ └─ scrapeStore.js
-├─ src
-│ ├─ App.css
-│ ├─ App.jsx
-│ ├─ components
-│ │ ├─ FilterControls.jsx
-│ │ ├─ ProductTable.jsx
-│ │ ├─ RangeFilter.jsx
-│ │ └─ SortControls.jsx
-│ ├─ index.css
-│ ├─ main.jsx
-│ └─ utils
-│ └─ calculations.js
-└─ vite.config.js
+- data/
+  - mmsports-products.json
+  - mock-products.json
+
+- scripts/
+  - mmsports/
+    - scrapeCategoryPage.js
+    - scrapeProductPage.js
+    - scrapeStore.js
+
+- src/
+  - components/
+    - FilterControls.jsx
+    - ProductTable.jsx
+    - RangeFilter.jsx
+    - SortControls.jsx
+  - utils/
+    - calculations.js
+  - App.jsx
+  - App.css
+  - main.jsx
+  - index.css
+
+- public/
+- index.html
+- package.json
+- vite.config.js
 
 ## Future improvements
 
