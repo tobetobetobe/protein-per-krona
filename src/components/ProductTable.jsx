@@ -16,13 +16,17 @@ function ProductTable({ products }) {
       </thead>
       <tbody>
         {products.map((product) => {
-          const { id, name, store, price, weightGrams, proteinPer100g } = product;
+          const { id, url, name, store, price, weightGrams, proteinPer100g } = product;
           const totalProtein = getTotalProtein(product);
           const proteinPerKrona = getProteinPerKrona(product);
 
           return (
             <tr key={id}>
-              <td>{name}</td>
+              <td>
+                <a href={url} target="_blank" rel="noreferrer" className="product-link">
+                  {name}
+                </a>
+              </td>
               <td>{store}</td>
               <td>{price} kr</td>
               <td>{weightGrams} g</td>
