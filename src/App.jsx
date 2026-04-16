@@ -2,7 +2,7 @@ import './App.css';
 import SortControls from './components/SortControls';
 import FilterControls from './components/FilterControls';
 import ProductTable from './components/ProductTable';
-import products from '../data/products.json';
+import products from '../data/mock-products.json';
 import { getProteinPerKrona } from './utils/calculations';
 import { useState } from 'react';
 

@@ -41,17 +41,13 @@ export async function scrapeCategoryPage(url) {
     // Remove duplicate links
     const uniqueLinks = [...new Set(links)];
 
-    return uniqueLinks;
+    const filteredLinks = uniqueLinks.filter((link) => {
+      return !link.toLowerCase().includes('bonusprodukt');
+    });
+
+    return filteredLinks;
   } catch (error) {
     console.error('Category scrape failed:', error.message);
     return [];
   }
 }
-
-// Temporary test run
-const testUrl = 'https://www.mmsports.se/kosttillskott/protein/';
-
-const links = await scrapeCategoryPage(testUrl);
-
-console.log('Found links:', links.length);
-console.log(links.slice(0, 10));
